@@ -1,13 +1,13 @@
 <template>
   <div>
-    Labels.vue
-    <Nav />
+    <div>当前访问的页面不存在</div>
+    <div><router-link to="/">返回首页</router-link> </div>
   </div>
 </template>
 
 <script lang="ts">
   export default {
-    name: 'Labels'
+    name: 'NotFound'
   };
 </script>
 
