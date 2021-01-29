@@ -6,6 +6,15 @@
 
 <style lang="scss">
   @import '~@/assets/test.scss';
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  *,*:after,*:before{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+  }
   body{
     background: $red;
   }
