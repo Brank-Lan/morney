@@ -15,6 +15,10 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
   }
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
   body{
     background: $red;
   }
