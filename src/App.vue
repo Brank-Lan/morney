@@ -5,7 +5,7 @@
 </template>
 
 <style lang="scss">
-  @import '~@/assets/test.scss';
+  @import '~@/assets/style/reset.scss';
   *{
     margin: 0;
     padding: 0;
@@ -18,9 +18,6 @@
   a{
     text-decoration: none;
     color: inherit;
-  }
-  body{
-    background: $red;
   }
 #nav {
   padding: 30px;
