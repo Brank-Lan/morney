@@ -9,26 +9,47 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component, Prop} from 'vue-property-decorator';
 
-  @Component({
-    props:{
-      propsMessage: String
-    }
-  })
+  @Component
   export default class Type extends Vue {
-    type = '-'; //type为‘+’表示收入，为'-'表示支出
-
+    type = '-';
+    @Prop(Number) xxx: number | undefined;
+    //Props告诉Vue xxx 不是 data是prop
+    //Number告诉Vue xx运行时是个Number
+    //xxx 属性名
+    // number | undefined告诉Ts xxx的编译时类型
     selectType(type: string) {
       if (type !== '-' && type !== '+') {
         throw new Error('type is unknown');
       }
       this.type = type;
     }
-    create(){
-      console.log(this.propsMessage);
+
+    mounted() {
+      console.log(this.xxx);
     }
   }
+  // const TypeProps = Vue.extend({
+  //   props: {
+  //     name: String
+  //   }
+  // });
+  // @Component
+  // export default class Type extends TypeProps {
+  //   type = '-'; //type为‘+’表示收入，为'-'表示支出
+  //
+  //   selectType(type: string) {
+  //     if (type !== '-' && type !== '+') {
+  //       throw new Error('type is unknown');
+  //     }
+  //     this.type = type;
+  //   }
+  //
+  //   create() {
+  //     console.log(this.name);
+  //   }
+  // }
 </script>
 
 <style lang="scss" scoped>
