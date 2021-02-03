@@ -14,6 +14,7 @@
   @Component
   export default class Type extends Vue {
     type = '-';
+    output = '0';
     @Prop(Number) xxx: number | undefined;
     selectType(type: string) {
       if (type !== '-' && type !== '+') {
