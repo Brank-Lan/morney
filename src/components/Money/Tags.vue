@@ -13,7 +13,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component, Prop} from 'vue-property-decorator';
+  import {Component, Prop, Watch} from 'vue-property-decorator';
 
   @Component
   export default class Tags extends Vue {
@@ -25,15 +25,17 @@
       if (index >= 0) {
         this.selectedSource.splice(index, 1);
       } else {
-        this.selectedSource.push(tag)
+        this.selectedSource.push(tag);
       }
+      this.$emit('update:value',this.selectedSource)
     }
-    create(){
-      const name = window.prompt('请输入标签名')
+
+    create() {
+      const name = window.prompt('请输入标签名');
       if (name === '') {
-        window.alert('标签名不能为空')
-      }else if(this.dataSource){
-        this.$emit('update:dataSource',[...this.dataSource,name])
+        window.alert('标签名不能为空');
+      } else if (this.dataSource) {
+        this.$emit('update:dataSource', [...this.dataSource, name]);
       }
     }
   }
