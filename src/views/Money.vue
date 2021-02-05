@@ -18,11 +18,22 @@
   import Types from '@/components/Money/Types.vue';
   import {Component, Watch} from 'vue-property-decorator';
 
+  const version = window.localStorage.getItem('version') || '0';
+  const recordList: Record[] = JSON.parse(window.localStorage.getItem('recordList') || '[]');
+  if (version === '0.0.1') {
+    recordList.forEach(record => {
+      record.createAt = new Date(2020, 0, 1);
+    });
+    window.localStorage.setItem('recordList', JSON.stringify((recordList)));
+  }
+
+  window.localStorage.setItem('version', '0.0.2');
   type Record = {
     tags: string[];
     notes: string;
     type: string;
     numberPad: string;
+    createAt?: Date;
   }
   @Component({
     components: {Types, Tags, Notes, NumberPad},
@@ -44,6 +55,7 @@
 
     saveRecord() {
       const record2: Record = JSON.parse(JSON.stringify(this.record));
+      record2.createAt = new Date();
       this.recordList.push(record2);
       console.log(this.recordList);
     }
