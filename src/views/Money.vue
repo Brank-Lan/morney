@@ -17,10 +17,10 @@
   import Tags from '@/components/Money/Tags.vue';
   import Types from '@/components/Money/Types.vue';
   import {Component, Watch} from 'vue-property-decorator';
-  import model from '@/model';
+  import model from '@/models/recordListModel';
 
   const version = window.localStorage.getItem('version') || '0';
-  const recordList: RecordItem[] = JSON.parse(window.localStorage.getItem('recordList') || '[]');
+  const recordList: RecordItem[] = model.fetch();
   if (version === '0.0.1') {
     recordList.forEach(record => {
       record.createAt = new Date(2020, 0, 1);

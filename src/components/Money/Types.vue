@@ -13,12 +13,12 @@
 
   @Component
   export default class Type extends Vue {
-    @Prop(String) value: string | undefined;
+    @Prop(String) readonly value: string | undefined;
     selectType(type: string) {
       if (type !== '-' && type !== '+') {
         throw new Error('type is unknown');
       }
-      this.$emit('update:type',type)
+      this.$emit('update:value',type)
     }
 
     @Watch('type')
