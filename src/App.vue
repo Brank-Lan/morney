@@ -5,30 +5,15 @@
 </template>
 
 <style lang="scss">
-  @import '~@/assets/style/reset.scss';
-  *{
-    margin: 0;
-    padding: 0;
+  @import "~@/assets/style/helper.scss";
+  @import "~@/assets/style/reset.scss";
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #333;
+    font-family: $font-hei;
+    font-size: 16px;
+    line-height: 1.5;
+    background: #f5f5f5;
   }
-  *,*:after,*:before{
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  a{
-    text-decoration: none;
-    color: inherit;
-  }
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>

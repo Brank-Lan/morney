@@ -27,7 +27,7 @@
       } else {
         this.selectedSource.push(tag);
       }
-      this.$emit('update:value',this.selectedSource)
+      this.$emit('update:value', this.selectedSource);
     }
 
     create() {
@@ -45,6 +45,7 @@
   @import "~@/assets/style/helper.scss";
 
   .tags {
+    background: white;
     font-size: 14px;
     padding: 16px;
     display: flex;

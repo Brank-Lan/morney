@@ -1,10 +1,15 @@
 <template>
   <div>
     <Layout class-prefix="layout">
-      {{recordList}}
       <NumberPad :value.sync="record.numberPad" @submit="saveRecord"/>
       <Types :value.sync="record.type"/>
-      <Notes field-name="备注" placeholder="这里输入备注" @update:value="onUpdateNotes"/>
+      <div class="notes">
+        <FormItem
+          field-name="备注"
+          placeholder="这里输入备注"
+          @update:value="onUpdateNotes"
+        />
+      </div>
       <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
     </Layout>
   </div>
@@ -13,7 +18,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import NumberPad from '@/components/Money/NumberPad.vue';
-  import Notes from '@/components/Money/Notes.vue';
+  import FormItem from '@/components/Money/FormItem.vue';
   import Tags from '@/components/Money/Tags.vue';
   import Types from '@/components/Money/Types.vue';
   import {Component, Watch} from 'vue-property-decorator';
@@ -30,7 +35,7 @@
 
   window.localStorage.setItem('version', '0.0.2');
   @Component({
-    components: {Types, Tags, Notes, NumberPad},
+    components: {Types, Tags, FormItem, NumberPad},
   })
   export default class Money extends Vue {
     tags = ['衣', '食', '住', '行'];
@@ -64,6 +69,9 @@
   .layout-content {
     display: flex;
     flex-direction: column-reverse;
+  }
+  .notes{
+    padding:12px 0;
   }
 </style>
 <style lang="scss" scoped>
