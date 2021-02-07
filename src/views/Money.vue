@@ -7,7 +7,7 @@
         <FormItem
           field-name="备注"
           placeholder="这里输入备注"
-          @update:value="onUpdateNotes"
+          @input="onUpdateNotes"
         />
       </div>
       <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
