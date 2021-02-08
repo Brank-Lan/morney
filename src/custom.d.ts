@@ -5,11 +5,15 @@ type RecordItem = {
   numberPad: string;
   createAt?: Date;
 }
-type tag = {
+type Tag = {
   id: string;
   name: string;
 }
 
 interface Window {
-  tagList: tag[];
+  tagList: Tag[];
+  createTag: (name: string) => void;
+  findTag: (id: string) => Tag | undefined;
+  removeTag: (id: string) => boolean;
+  updateTag: (id: string, name: string) => string;
 }

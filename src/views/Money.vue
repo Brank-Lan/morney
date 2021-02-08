@@ -40,7 +40,7 @@
     components: {Types, Tags, FormItem, NumberPad},
   })
   export default class Money extends Vue {
-    tags: tag[] = window.tagList;
+    tags: Tag[] = window.tagList;
     record: RecordItem = {
       tags: [], notes: '', type: '-', numberPad: '0'
     };
@@ -54,7 +54,7 @@
     }
 
     @Watch('recordList')
-    onRecordListChanged(value: RecordItem[], oldValue: RecordItem[]) {
+    onRecordListChanged() {
       recordListModel.save();
     }
   }
