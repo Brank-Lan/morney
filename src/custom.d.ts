@@ -5,3 +5,7 @@ type RecordItem = {
   numberPad: string;
   createAt?: Date;
 }
+type tag = {
+  id: string;
+  name: string;
+}
