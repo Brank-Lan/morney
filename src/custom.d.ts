@@ -9,3 +9,7 @@ type tag = {
   id: string;
   name: string;
 }
+
+interface Window {
+  tagList: tag[];
+}
