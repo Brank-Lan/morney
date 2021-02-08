@@ -16,9 +16,9 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import tagListModel from '@/models/tagListModel';
   import FormItem from '@/components/Money/FormItem.vue';
   import Button from '@/components/Button.vue';
+  import tagListStore from '@/store/tagListStore';
 
   @Component({
     components: {Button, FormItem}
@@ -33,15 +33,13 @@
     update(name: string) {
       if (this.tag) {
         console.log(name);
-        tagListModel.update(this.tag.id, name);
+        tagListStore.updateTag(this.tag.id, name);
       }
     }
 
     created() {
       const id = this.$route.params.id;
-      tagListModel.fetch();
-      const tags = tagListModel.data;
-      const tag = tags.filter(t => t.id === id)[0];
+      const tag = tagListStore.findTag(id)
       if (tag) {
         this.tag = tag;
       } else {
@@ -51,7 +49,7 @@
 
     remove() {
       if (this.tag) {
-        tagListModel.remove(this.tag.id);
+        tagListStore.removeTag(this.tag.id);
         this.$router.back();
       }
     }
