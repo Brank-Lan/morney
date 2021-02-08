@@ -21,7 +21,7 @@
   import FormItem from '@/components/Money/FormItem.vue';
   import Tags from '@/components/Money/Tags.vue';
   import Types from '@/components/Money/Types.vue';
-  import {Component, Watch} from 'vue-property-decorator';
+  import {Component} from 'vue-property-decorator';
   import recordListModel from '@/models/recordListModel';
 
   const version = window.localStorage.getItem('version') || '0';
@@ -44,18 +44,13 @@
     record: RecordItem = {
       tags: [], notes: '', type: '-', numberPad: '0'
     };
-    recordList: RecordItem[] = recordList;
+    recordList: RecordItem[] = window.recordList;
 
     onUpdateTags(value: string[]) {
       this.record.tags = value;
     }
     saveRecord() {
-      recordListModel.create(this.record)
-    }
-
-    @Watch('recordList')
-    onRecordListChanged() {
-      recordListModel.save();
+      window.createRecordList(this.record)
     }
   }
 </script>

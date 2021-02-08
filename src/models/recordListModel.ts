@@ -16,9 +16,10 @@ const recordListModel: RecordListModel = {
     return this.data;
   },
   create(record: RecordItem): void {
-    const record2 = this.clone(record)
-    record2.createAt = new Date()
-    this.data.push(record2)
+    const record2 = this.clone(record);
+    record2.createAt = new Date();
+    this.data.push(record2);
+    this.save();
   },
   clone(record: RecordItem[] | RecordItem) {
     return clone(record);
