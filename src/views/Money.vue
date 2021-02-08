@@ -23,47 +23,39 @@
   import Types from '@/components/Money/Types.vue';
   import {Component, Watch} from 'vue-property-decorator';
   import recordListModel from '@/models/recordListModel';
-  import tagListModel from '@/models/tagListModel';
-
 
   const version = window.localStorage.getItem('version') || '0';
+  const recordList = recordListModel.fetch();
+  if (version === '0.0.1') {
+      recordList.forEach(record => {
+      record.createAt = new Date(2020, 0, 1);
+    });
+    window.localStorage.setItem('recordList', JSON.stringify((recordList)));
+  }
+  window.localStorage.setItem('version', '0.0.2');
+
+
 
   @Component({
     components: {Types, Tags, FormItem, NumberPad},
   })
   export default class Money extends Vue {
-    tags: tag[] = [];
+    tags: tag[] = window.tagList;
     record: RecordItem = {
       tags: [], notes: '', type: '-', numberPad: '0'
     };
-    recordList: RecordItem[] = [];
+    recordList: RecordItem[] = recordList;
 
     onUpdateTags(value: string[]) {
       this.record.tags = value;
     }
     saveRecord() {
-      const record2: RecordItem = recordListModel.clone(this.record);
-      record2.createAt = new Date();
-      this.recordList.push(record2);
-      console.log(this.recordList);
-    }
-
-    mounted() {
-      console.log(1);
-      this.tags = tagListModel.fetch();
-      this.recordList = recordListModel.fetch();
-      if (version === '0.0.1') {
-        this.recordList.forEach(record => {
-          record.createAt = new Date(2020, 0, 1);
-        });
-        window.localStorage.setItem('recordList', JSON.stringify((this.recordList)));
-      }
-      window.localStorage.setItem('version', '0.0.2');
+      recordListModel.create(this.record)
     }
 
     @Watch('recordList')
     onRecordListChanged(value: RecordItem[], oldValue: RecordItem[]) {
-      recordListModel.save(value);
+      recordListModel.save();
     }
   }
 </script>
