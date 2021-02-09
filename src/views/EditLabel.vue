@@ -18,7 +18,7 @@
   import {Component} from 'vue-property-decorator';
   import FormItem from '@/components/Money/FormItem.vue';
   import Button from '@/components/Button.vue';
-  import tagListStore from '@/store/tagListStore';
+  import store from '@/store/index2';
 
   @Component({
     components: {Button, FormItem}
@@ -33,13 +33,13 @@
     update(name: string) {
       if (this.tag) {
         console.log(name);
-        tagListStore.updateTag(this.tag.id, name);
+        store.updateTag(this.tag.id, name);
       }
     }
 
     created() {
       const id = this.$route.params.id;
-      const tag = tagListStore.findTag(id)
+      const tag = store.findTag(id)
       if (tag) {
         this.tag = tag;
       } else {
@@ -49,7 +49,7 @@
 
     remove() {
       if (this.tag) {
-        tagListStore.removeTag(this.tag.id);
+        store.removeTag(this.tag.id);
         this.$router.back();
       }
     }

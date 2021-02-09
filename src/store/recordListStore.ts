@@ -3,7 +3,7 @@ import clone from '@/lib/clone';
 const localStorageKeyName = 'recordList';
 const recordListStore = {
   recordList: [] as RecordItem[],
-  fetch() {
+  fetchRecordList() {
     this.recordList = JSON.parse(window.localStorage.getItem(localStorageKeyName) || '[]') as RecordItem[];
     return this.recordList;
   },
@@ -17,5 +17,5 @@ const recordListStore = {
     window.localStorage.setItem(localStorageKeyName, JSON.stringify(this.recordList));
   }
 };
-recordListStore.fetch();
+recordListStore.fetchRecordList();
 export default recordListStore;

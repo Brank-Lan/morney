@@ -37,13 +37,17 @@
 
   @Component({
     components: {Types, Tags, FormItem, NumberPad},
+    computed: {
+      recordList() {
+        return store.fetchRecordList();
+      }
+    }
   })
   export default class Money extends Vue {
-    tags: Tag[] = store.tagList;
+    // tags: Tag[] = store.tagList;
     record: RecordItem = {
       tags: [], notes: '', type: '-', numberPad: '0'
     };
-    recordList: RecordItem[] = store.recordList;
 
     onUpdateTags(value: string[]) {
       this.record.tags = value;

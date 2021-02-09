@@ -62,7 +62,7 @@
     }
 
     ok() {
-      this.$emit('update:output', parseFloat(this.innerOutput));
+      this.$emit('update:value', parseFloat(this.innerOutput));
       this.$emit('submit');
       this.innerOutput = '0';
     }

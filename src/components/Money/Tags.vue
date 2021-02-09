@@ -5,7 +5,7 @@
     </div>
     <ul class="current">
       <li
-        v-for="tag in dataSource"
+        v-for="tag in tagList"
         :key="tag.id"
         :class="{selected: selectedSource.indexOf(tag)>=0}"
         @click="toggle(tag)">
@@ -17,15 +17,15 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component, Prop} from 'vue-property-decorator';
-  import tagListStore from '@/store/tagListStore';
+  import {Component} from 'vue-property-decorator';
+  import store from '@/store/index2';
 
   @Component
   export default class Tags extends Vue {
-    @Prop(Array) dataSource: string[] | undefined;
-    selectedSource: string[] = [];
+    tagList = store.fetchTag();
+    selectedSource: Tag[] = [];
 
-    toggle(tag: string) {
+    toggle(tag: Tag) {
       const index = this.selectedSource.indexOf(tag);
       if (index >= 0) {
         this.selectedSource.splice(index, 1);
@@ -38,12 +38,14 @@
     create() {
       const name = window.prompt('请输入标签名');
       if (name) {
-        const message = tagListStore.createTag(name);
+        const message = store.createTag(name);
         if (message === 'duplicated') {
           window.alert('标签名重复了');
         } else if (message === 'success') {
           window.alert('创建成功了');
         }
+      } else {
+        window.alert('标签名为空');
       }
     }
   }
