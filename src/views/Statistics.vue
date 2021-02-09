@@ -1,7 +1,7 @@
 <template>
   <div>
     <Layout>
-      <p>{{count1}}</p>
+      <p>{{count}}</p>
       <button @click="addCount">count+1</button>
     </Layout>
   </div>
@@ -22,7 +22,6 @@
     }
   })
   export default class Statistics extends Vue {
-    count1 = store.count
     addCount() {
       store.add();
     }
