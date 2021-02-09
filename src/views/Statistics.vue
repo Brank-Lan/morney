@@ -1,20 +1,38 @@
 <template>
   <div>
     <Layout>
-      <p>Statistics</p>
+      <p>{{count1}}</p>
+      <button @click="addCount">count+1</button>
     </Layout>
   </div>
 </template>
 
 <script lang="ts">
-  export default {
-    name: 'Statistics'
-  };
+  import Vue from 'vue';
+  import store from '@/store/index2';
+  import {Component} from 'vue-property-decorator';
+  import Button from '@/components/Button.vue';
+
+  @Component({
+    components: {Button},
+    computed: {
+      count() {
+        return store.count;
+      }
+    }
+  })
+  export default class Statistics extends Vue {
+    count1 = store.count
+    addCount() {
+      store.add();
+    }
+  }
 </script>
 
 <style lang="scss" scoped>
   @import "~@/assets/style/helper.scss";
-  p{
+
+  p {
     color: $color-highlight;
   }
 </style>
