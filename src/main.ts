@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import Vuex from 'vuex';
 import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
@@ -6,6 +7,7 @@ import store from './store';
 import Nav from '@/components/Nav.vue';
 import Layout from '@/components/Layout.vue';
 import Icon from '@/components/Icon.vue';
+
 
 Vue.config.productionTip = false;
 Vue.component('Layout', Layout);

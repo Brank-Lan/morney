@@ -22,24 +22,12 @@
   import Tags from '@/components/Money/Tags.vue';
   import Types from '@/components/Money/Types.vue';
   import {Component} from 'vue-property-decorator';
-  import store from '@/store/index2';
-
-  const version = window.localStorage.getItem('version') || '0';
-  const recordList = store.recordList;
-  if (version === '0.0.1') {
-    recordList.forEach(record => {
-      record.createAt = new Date(2020, 0, 1);
-    });
-    window.localStorage.setItem('recordList', JSON.stringify((recordList)));
-  }
-  window.localStorage.setItem('version', '0.0.2');
-
 
   @Component({
     components: {Types, Tags, FormItem, NumberPad},
     computed: {
       recordList() {
-        return store.fetchRecordList();
+        return this.$store.state.recordList;
       }
     }
   })
@@ -49,12 +37,16 @@
       tags: [], notes: '', type: '-', numberPad: '0'
     };
 
+    created() {
+      this.$store.commit('fetchRecords');
+    }
+
     onUpdateTags(value: string[]) {
       this.record.tags = value;
     }
 
     saveRecord() {
-      store.createRecordList(this.record);
+      this.$store.commit('createRecordList', this.record);
     }
   }
 </script>
