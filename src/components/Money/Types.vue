@@ -16,7 +16,6 @@
     @Prop(String) readonly value: string | undefined;
 
     selectType(type: string) {
-      console.log(type);
       if (type !== '-' && type !== '+') {
         throw new Error('type is unknown');
       }
