@@ -8,7 +8,7 @@
         </router-link>
       </div>
       <div class="createTag-wrapper">
-        <Button class="createTag" @click="createTag">新增标签</Button>
+        <Button class="createTag" @click="create">新增标签</Button>
       </div>
     </Layout>
   </div>
@@ -33,10 +33,12 @@
       this.$store.commit('fetchTag');
     }
 
-    createTag() {
+    create() {
       const name = window.prompt('请输入标签名');
       if (name) {
         this.$store.commit('createTag', name);
+      } else {
+        window.alert('标签名为空');
       }
     }
   }
