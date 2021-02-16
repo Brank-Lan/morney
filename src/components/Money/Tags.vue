@@ -18,12 +18,20 @@
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
-  import store from '@/store/index2';
 
-  @Component
+  @Component({
+    computed: {
+      tagList() {
+        return this.$store.state.tagList;
+      }
+    }
+  })
   export default class Tags extends Vue {
-    tagList = store.fetchTag();
     selectedSource: Tag[] = [];
+
+    created() {
+      this.$store.commit('fetchTag');
+    }
 
     toggle(tag: Tag) {
       const index = this.selectedSource.indexOf(tag);
@@ -38,12 +46,7 @@
     create() {
       const name = window.prompt('请输入标签名');
       if (name) {
-        const message = store.createTag(name);
-        if (message === 'duplicated') {
-          window.alert('标签名重复了');
-        } else if (message === 'success') {
-          window.alert('创建成功了');
-        }
+        this.$store.commit('createTag', name);
       } else {
         window.alert('标签名为空');
       }

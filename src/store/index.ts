@@ -23,8 +23,8 @@ const store = new Vuex.Store({
       state.recordList && state.recordList.push(record2);
       store.commit('saveRecord');
     },
-    saveRecord() {
-      window.localStorage.setItem(localStorageRecordList, JSON.stringify(this.recordList));
+    saveRecord(state) {
+      window.localStorage.setItem(localStorageRecordList, JSON.stringify(state.recordList));
     },
     fetchTag(state) {
       state.tagList = JSON.parse(window.localStorage.getItem(localStorageTagList) || '[]');
@@ -47,7 +47,7 @@ const store = new Vuex.Store({
     },
     removeTag(state, id: string) {
       let index = -1;
-      for (let i = 0; i < this.tagList.length; i++) {
+      for (let i = 0; i < state.tagList.length; i++) {
         if (state.tagList[i].id === id) {
           index = i;
           break;
@@ -77,8 +77,8 @@ const store = new Vuex.Store({
         return 'not found';
       }
     },
-    saveTags() {
-      window.localStorage.setItem(localStorageTagList, JSON.stringify(this.tagList));
+    saveTags(state) {
+      window.localStorage.setItem(localStorageTagList, JSON.stringify(state.tagList));
     },
   },
 });

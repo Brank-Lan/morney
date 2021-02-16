@@ -10,7 +10,7 @@
           :value.sync="record.notes"
         />
       </div>
-      <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
+      <Tags :data-source.sync="record.tags" @update:value="onUpdateTags"/>
     </Layout>
   </div>
 </template>
@@ -34,11 +34,11 @@
   export default class Money extends Vue {
     // tags: Tag[] = store.tagList;
     record: RecordItem = {
-      tags: [], notes: '', type: '-', numberPad: '0'
+      tags: [], notes: '', type: '-', numberPad: 0
     };
 
     created() {
-      this.$store.commit('fetchRecords');
+      this.$store.commit('fetchRecordList');
     }
 
     onUpdateTags(value: string[]) {

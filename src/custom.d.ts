@@ -2,7 +2,7 @@ type RecordItem = {
   tags: string[];
   notes: string;
   type: string;
-  numberPad: string;
+  numberPad: number;
   createAt?: Date;
 }
 type RecordListModel = {

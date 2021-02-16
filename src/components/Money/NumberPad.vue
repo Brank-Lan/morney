@@ -26,7 +26,7 @@
 
   @Component
   export default class NumberPad extends Vue {
-    @Prop(String) value!: number;
+    @Prop(Number) value!: number;
     innerOutput: string = this.value.toString();
 
     inputContent(event: MouseEvent) {

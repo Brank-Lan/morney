@@ -9,23 +9,18 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import {Component, Prop, Watch} from 'vue-property-decorator';
+  import {Component, Prop} from 'vue-property-decorator';
 
   @Component
   export default class Type extends Vue {
     @Prop(String) readonly value: string | undefined;
+
     selectType(type: string) {
+      console.log(type);
       if (type !== '-' && type !== '+') {
         throw new Error('type is unknown');
       }
-      this.$emit('update:value',type)
-    }
-
-    @Watch('type')
-    onTypeChanged(value: string, oldValue: string) {
-      {
-        this.$emit('update:value', value);
-      }
+      this.$emit('update:value', type);
     }
   }
 </script>
