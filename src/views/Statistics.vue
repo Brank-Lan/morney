@@ -2,7 +2,7 @@
   <div>
     <Layout>
       <p>{{count}}</p>
-      <button @click="addCount">count+1</button>
+      <button @click="$store.commit('increment',10)">count+1</button>
     </Layout>
   </div>
 </template>
@@ -17,7 +17,7 @@
     components: {Button},
     computed: {
       count() {
-        return store.count;
+        return this.$store.state.count;
       }
     }
   })
