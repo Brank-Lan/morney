@@ -31,19 +31,21 @@
 <style lang="scss" scoped>
   @import "~@/assets/style/helper.scss";
 
-  ::v-deep .type-tabs-item {
-    background: #c4c4c4;
+  ::v-deep {
+    .type-tabs-item {
+      background: #c4c4c4;
 
-    &.selected {
-      background: white;
+      &.selected {
+        background: white;
+      }
+
+      &::after {
+        display: none;
+      }
     }
 
-    &::after {
-      display: none;
+    .interval-tabs-item {
+      height: 48px;
     }
-  }
-
-  ::v-deep .interval-tabs-item {
-    height: 48px;
   }
 </style>
