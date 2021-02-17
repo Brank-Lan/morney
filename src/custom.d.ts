@@ -1,9 +1,9 @@
 type RecordItem = {
-  tags: string[];
+  tags: Tag[];
   notes: string;
   type: string;
   numberPad: number;
-  createAt?: Date;
+  createAt?: string;
 }
 type RecordListModel = {
   data: RecordItem[];
@@ -17,3 +17,8 @@ type Tag = {
   name: string;
 }
 type DataSourceItem = { text: string; value: string }
+type RootState = {
+  recordList: RecordItem[];
+  tagList: Tag[];
+  currentTag?: Tag;
+};

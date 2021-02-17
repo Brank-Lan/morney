@@ -37,14 +37,14 @@
 
     typeList: DataSourceItem[] = [{text: '支出', value: '-'}, {text: '收入', value: '+'}];
     record: RecordItem = {
-      tags: [], notes: '', type: "-", numberPad: 0
+      tags: [], notes: '', type: '-', numberPad: 0
     };
 
     created() {
       this.$store.commit('fetchRecordList');
     }
 
-    onUpdateTags(value: string[]) {
+    onUpdateTags(value: Tag[]) {
       this.record.tags = value;
     }
 
@@ -53,16 +53,13 @@
     }
   }
 </script>
-<style lang="scss">
-  .layout-content {
+<style lang="scss" scoped>
+  ::v-deep .layout-content {
     display: flex;
     flex-direction: column-reverse;
   }
 
-  .notes {
+  ::v-deep .notes {
     padding: 12px 0;
   }
-</style>
-<style lang="scss" scoped>
-
 </style>

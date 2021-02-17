@@ -7,11 +7,6 @@ import Tags from '@/components/Money/Tags.vue';
 const localStorageTagList = 'tagList';
 const localStorageRecordList = 'recordList';
 Vue.use(Vuex);
-type RootState = {
-  recordList: RecordItem[];
-  tagList: Tag[];
-  currentTag?: Tag;
-};
 
 const store = new Vuex.Store({
   state: {
@@ -26,7 +21,7 @@ const store = new Vuex.Store({
     },
     createRecordList(state, record: RecordItem) {
       const record2: RecordItem = clone(record);
-      record2.createAt = new Date();
+      record2.createAt = new Date().toISOString();
       state.recordList && state.recordList.push(record2);
       store.commit('saveRecord');
     },
