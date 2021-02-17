@@ -18,9 +18,9 @@
     @Prop(String)
     readonly value: string | undefined;
     @Prop({required: true, type: Array})
-    dataSource!: DataSourceItem[];
+    readonly dataSource!: DataSourceItem[];
     @Prop(String)
-    classPrefix?: string;
+    readonly classPrefix?: string;
 
     liClass(item: DataSourceItem) {
       return {
