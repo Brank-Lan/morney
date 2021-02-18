@@ -1,7 +1,7 @@
 <template>
   <div>
     <Layout class-prefix="layout">
-      <NumberPad :value.sync="record.numberPad" @submit="saveRecord"/>
+      <NumberPad :value.sync="record.amount" @submit="saveRecord"/>
       <Tabs :data-source="typeList" :value.sync="record.type"/>
       <!--      <Types :value.sync="record.type"/>-->
       <div class="notes">
@@ -37,7 +37,7 @@
 
     typeList: DataSourceItem[] = [{text: '支出', value: '-'}, {text: '收入', value: '+'}];
     record: RecordItem = {
-      tags: [], notes: '', type: '-', numberPad: 0
+      tags: [], notes: '', type: '-', amount: 0
     };
 
     created() {

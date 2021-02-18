@@ -2,15 +2,14 @@
   <div>
     <Layout>
       <Tabs :value.sync="type" class-prefix="type" :data-source="typeList"/>
-      <Tabs :value.sync="interval" class-prefix="interval" :data-source="intervalList"/>
       <ol>
         <li v-for="(group,index) in groupList" :key="index">
-          <h3 class="title">{{beauty(group.title)}}</h3>
+          <h3 class="title">{{beauty(group.title)}}<span>￥{{group.total}}</span></h3>
           <ol>
             <li class="record" v-for="(item, index) in group.items" :key="index">
               <span>{{tagString(item.tags)}}</span>
               <span class="notes">{{item.notes}}</span>
-              <span>￥{{item.numberPad}}</span>
+              <span>￥{{item.amount}}</span>
             </li>
           </ol>
         </li>
@@ -25,7 +24,6 @@
   import Button from '@/components/Button.vue';
   import Types from '@/components/Money/Types.vue';
   import Tabs from '@/components/Tabs.vue';
-  import intervalList from '@/constant/intervalList';
   import typeList from '@/constant/typeList';
   import clone from '@/lib/clone';
   import dayjs from 'dayjs';
@@ -44,24 +42,31 @@
       /*[
         {title,item[]}
       ]*/
-      const newList = clone(recordList).sort((a: RecordItem, b: RecordItem) => {return dayjs(b.createAt).valueOf() - dayjs(a.createAt).valueOf();});
-      const result = [{title: newList[0].createAt, items: [newList[0]]}];
-      for (let i = 0; i < newList.length; i++) {
-        const current = newList[i];
-        const last = result[result.length - 1];
-        if (dayjs(last.title).isSame(dayjs(current.createAt), 'day')) {
-          last.items.push(current);
-        } else {
-          result.push({title: current.createAt, items: [current]});
+      const newList = clone(recordList)
+        .filter((t: RecordItem) => t.type === this.type)
+        .sort((a: RecordItem, b: RecordItem) => {return dayjs(b.createAt).valueOf() - dayjs(a.createAt).valueOf();});
+      let result: { title: string; items: RecordItem[]; total?: number }[] = [];
+      if (newList.length > 0) {
+        result = [{title: newList[0].createAt, items: [newList[0]]}];
+        for (let i = 1; i < newList.length; i++) {
+          const current = newList[i];
+          const last = result[result.length - 1];
+          if (dayjs(last.title).isSame(dayjs(current.createAt), 'day')) {
+            last.items.push(current);
+          } else {
+            result.push({title: current.createAt, items: [current]});
+          }
         }
+        result.map(group => {
+          group.total = group.items.reduce((sum, item) => {
+            return sum + item.amount;
+          }, 0);
+        });
       }
       return result;
     }
-
-    interval = 'day';
     type = '-';
     typeList = typeList;
-    intervalList = intervalList;
 
     beforeCreate() {
       this.$store.commit('fetchRecordList');
