@@ -7,7 +7,7 @@
       <li
         v-for="tag in tagList"
         :key="tag.id"
-        :class="{selected: selectedSource.indexOf(tag)>=0}"
+        :class="{selected: value.indexOf(tag)>=0}"
         @click="toggle(tag)">
         {{tag.name}}
       </li>
@@ -16,16 +16,16 @@
 </template>
 
 <script lang="ts">
-  import {Component} from 'vue-property-decorator';
+  import {Component, Prop} from 'vue-property-decorator';
   import {mixins} from 'vue-class-component';
   import TagHelper from '@/mixins/TagHelper';
 
   @Component
   export default class Tags extends mixins(TagHelper) {
+    @Prop({default: [], type: Array, required: true})
+    value!: Tag[];
     selectedSource: Tag[] = [];
-    created() {
-      this.$store.commit('fetchTag');
-    }
+
     toggle(tag: Tag) {
       const index = this.selectedSource.indexOf(tag);
       if (index >= 0) {
@@ -35,6 +35,7 @@
       }
       this.$emit('update:value', this.selectedSource);
     }
+
   }
 </script>
 

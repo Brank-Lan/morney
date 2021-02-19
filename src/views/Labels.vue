@@ -25,9 +25,6 @@
   })
   export default class Labels extends mixins(TagHelper) {
 
-    created() {
-      this.$store.commit('fetchTag');
-    }
   }
 </script>
 

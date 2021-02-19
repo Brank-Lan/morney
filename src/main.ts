@@ -18,3 +18,12 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app');
+
+window.onload = () => {
+  const yMax = document.body.scrollHeight;
+  console.log(yMax);
+  setTimeout(function () {
+    window.scrollTo(0, yMax);
+  }, 0);
+
+};

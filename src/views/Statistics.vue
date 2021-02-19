@@ -2,7 +2,7 @@
   <div>
     <Layout>
       <Tabs :value.sync="type" class-prefix="type" :data-source="typeList"/>
-      <ol>
+      <ol v-if="groupList.length>0">
         <li v-for="(group,index) in groupList" :key="index">
           <h3 class="title">{{beauty(group.title)}}<span>￥{{group.total}}</span></h3>
           <ol>
@@ -14,6 +14,9 @@
           </ol>
         </li>
       </ol>
+      <div class="noResult" v-else>
+        目前没有数据
+      </div>
     </Layout>
   </div>
 </template>
@@ -45,7 +48,8 @@
       const newList = clone(recordList)
         .filter((t: RecordItem) => t.type === this.type)
         .sort((a: RecordItem, b: RecordItem) => {return dayjs(b.createAt).valueOf() - dayjs(a.createAt).valueOf();});
-      let result: { title: string; items: RecordItem[]; total?: number }[] = [];
+      type Result = { title: string; items: RecordItem[]; total?: number }
+      let result: Result[] = [];
       if (newList.length > 0) {
         result = [{title: newList[0].createAt, items: [newList[0]]}];
         for (let i = 1; i < newList.length; i++) {
@@ -65,6 +69,7 @@
       }
       return result;
     }
+
     type = '-';
     typeList = typeList;
 
@@ -139,5 +144,10 @@
     margin-right: auto;
     margin-left: 16px;
     color: #999;
+  }
+
+  .noResult {
+    padding-top: 16px;
+    text-align: center;
   }
 </style>

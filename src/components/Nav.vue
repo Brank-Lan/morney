@@ -24,25 +24,28 @@
 </script>
 
 <style lang="scss" scoped>
-  nav{
+  nav {
     display: flex;
-    box-shadow: 0 0 3px rgba(0,0,0,0.25);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
     justify-content: center;
     align-items: center;
     font-size: 12px;
-    > .item{
+
+    > .item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width:33.3333%;
+      width: 33.3333%;
       padding: 2px 0;
-        .icon{
-          width: 32px;
-          height:32px;
-        }
+
+      .icon {
+        width: 32px;
+        height: 32px;
+      }
     }
-    .selected{
-      color:red;
+
+    .selected {
+      color: red;
     }
   }
 

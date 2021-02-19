@@ -36,7 +36,7 @@ const store = new Vuex.Store({
       const names = state.tagList.map(tag => tag.name);
       if (names.indexOf(name) >= 0) {
         window.alert('标签名重复了');
-        return 'duplicated';
+        return;
       }
       const id = createId().toString();
       state.tagList.push({
@@ -44,8 +44,6 @@ const store = new Vuex.Store({
         name: name
       });
       store.commit('saveTags');
-      window.alert('创建成功');
-      return 'success';
     },
     removeTag(state, id: string) {
       let index = -1;

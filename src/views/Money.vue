@@ -11,7 +11,7 @@
           :value.sync="record.notes"
         />
       </div>
-      <Tags :data-source.sync="record.tags" @update:value="onUpdateTags"/>
+      <Tags :value.sync="record.tags"/>
     </Layout>
   </div>
 </template>
@@ -44,12 +44,15 @@
       this.$store.commit('fetchRecordList');
     }
 
-    onUpdateTags(value: Tag[]) {
-      this.record.tags = value;
-    }
-
     saveRecord() {
+      if (this.record.tags.length <= 0) {
+        window.alert('请选择至少一个标签');
+        return;
+      }
       this.$store.commit('createRecordList', this.record);
+      window.alert('创建成功');
+      this.record.notes = '';
+      this.record.tags = [];
     }
   }
 </script>
