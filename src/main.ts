@@ -4,6 +4,8 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
+import 'ant-design-vue/dist/antd.css';
+import '@/assets/style/reset.scss';
 import Nav from '@/components/Nav.vue';
 import Layout from '@/components/Layout.vue';
 import Icon from '@/components/Icon.vue';
