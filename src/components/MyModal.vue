@@ -20,7 +20,7 @@
   })
   export default class MyModal extends Vue {
     // @Prop({required: true, type: Function}) ok!: () => {};
-    @Prop({required: true, type: String}) tagName = '';
+    @Prop({default: '', required: true, type: String}) tagName = '';
     @Prop({default: false, type: Boolean}) visible? = false;
 
     onValueChange(value: string) {

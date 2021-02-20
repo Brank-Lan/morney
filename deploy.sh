@@ -18,6 +18,9 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<USERNAME>.github.io.git master
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
- git push -f git@github.com:Brank-Lan/morney-dist.git master:gh-pages
+# git push -f git@github.com:Brank-Lan/morney-dist.git master:gh-pages
+
+# 部署到码云
+git push -f git@gitee.com:wu_lanxi/morney-dist.git master:gh-pages
 
 cd -

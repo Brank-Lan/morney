@@ -32,6 +32,7 @@ export class TagHelper extends Vue {
     } else {
       this.visible = false;
       this.$store.commit('createTag', this.tagName);
+      this.tagName = '';
     }
   }
 }
