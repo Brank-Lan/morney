@@ -6,6 +6,7 @@
 <script lang="js">
   import store from '@/store/index2'
 
+
   export default {
     data() {
       return {

@@ -46,11 +46,11 @@
 
     saveRecord() {
       if (this.record.tags.length <= 0) {
-        window.alert('请选择至少一个标签');
+        this.$message.warning('请选择至少一个标签', 2);
         return;
       }
       this.$store.commit('createRecordList', this.record);
-      window.alert('创建成功');
+      this.$message.success('创建成功', 2);
       this.record.notes = '';
       this.record.tags = [];
     }

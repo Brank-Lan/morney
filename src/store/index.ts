@@ -12,7 +12,8 @@ const store = new Vuex.Store({
   state: {
     recordList: [],
     tagList: [],
-    currentTag: undefined
+    currentTag: undefined,
+    stateError: ''
   } as RootState,
   mutations: {
     fetchRecordList(state) {
@@ -35,7 +36,9 @@ const store = new Vuex.Store({
     createTag(state, name: string) {
       const names = state.tagList.map(tag => tag.name);
       if (names.indexOf(name) >= 0) {
-        window.alert('标签名重复了');
+        state.stateError = ''
+        Vue.prototype.$message.warning('标签名重复了', 2);
+        state.stateError = 'duplicated'
         return;
       }
       const id = createId().toString();

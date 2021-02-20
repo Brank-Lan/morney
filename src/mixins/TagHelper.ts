@@ -1,15 +1,8 @@
 import Vue from 'vue';
 import {Component} from 'vue-property-decorator';
-import {Modal, message, Input} from 'ant-design-vue';
-// import 'ant-design-vue/lib/modal/style/css';
-// import 'ant-design-vue/lib/input/style/css';
-// import 'ant-design-vue/lib/message/style/css';
 
-Modal.install(Vue);
 
-@Component({
-  components: {[Modal.name]: Modal, [Input.name]: Input},
-})
+@Component
 export class TagHelper extends Vue {
   visible = false;
   tagName = '';
@@ -34,12 +27,11 @@ export class TagHelper extends Vue {
 
   ok() {
     if (!this.tagName) {
-      message.error('标签名不能为空', 2);
+      this.$message.error('标签名不能为空', 2);
       return;
     } else {
       this.visible = false;
       this.$store.commit('createTag', this.tagName);
-      message.success('添加成功', 2);
     }
   }
 }

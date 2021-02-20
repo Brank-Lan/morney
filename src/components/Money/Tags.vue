@@ -12,17 +12,7 @@
         {{tag.name}}
       </li>
     </ul>
-    <a-modal v-model="visible" title="请输入标签名" ok-text="确认" cancel-text="取消" @ok="ok">
-      <a-input
-        v-decorator="[
-          'tagName',
-          { rules: [{ required: true, message: '请输入你标签名' }] },
-        ]"
-        placeholder="请输入你标签名"
-        v-model="tagName"
-        autofocus
-      />
-    </a-modal>
+    <my-modal :tag-name.sync="tagName" :visible.sync="visible" @ok="ok"></my-modal>
   </div>
 </template>
 
@@ -30,8 +20,11 @@
   import {Component, Prop} from 'vue-property-decorator';
   import {mixins} from 'vue-class-component';
   import TagHelper from '@/mixins/TagHelper';
+  import MyModal from '@/components/MyModal.vue';
 
-  @Component
+  @Component({
+    components: {MyModal}
+  })
   export default class Tags extends mixins(TagHelper) {
     @Prop({default: [], type: Array, required: true})
     value!: Tag[];

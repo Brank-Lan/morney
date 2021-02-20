@@ -9,12 +9,14 @@ import '@/assets/style/reset.scss';
 import Nav from '@/components/Nav.vue';
 import Layout from '@/components/Layout.vue';
 import Icon from '@/components/Icon.vue';
+import {message} from 'ant-design-vue';
 
 
 Vue.config.productionTip = false;
 Vue.component('Layout', Layout);
 Vue.component('Nav', Nav);
 Vue.component('Icon', Icon);
+Vue.prototype.$message = message;
 new Vue({
   router,
   store,
