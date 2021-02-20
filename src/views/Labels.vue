@@ -11,6 +11,12 @@
         <Button class="createTag" @click="createTag">新增标签</Button>
       </div>
     </Layout>
+    <a-modal v-model="visible" title="请输入标签名" ok-text="确认" cancel-text="取消" @ok="ok">
+      <a-input
+        placeholder="请输入你标签名"
+        v-model="tagName"
+      />
+    </a-modal>
   </div>
 </template>
 

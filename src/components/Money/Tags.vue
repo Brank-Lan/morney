@@ -12,6 +12,17 @@
         {{tag.name}}
       </li>
     </ul>
+    <a-modal v-model="visible" title="请输入标签名" ok-text="确认" cancel-text="取消" @ok="ok">
+      <a-input
+        v-decorator="[
+          'tagName',
+          { rules: [{ required: true, message: '请输入你标签名' }] },
+        ]"
+        placeholder="请输入你标签名"
+        v-model="tagName"
+        autofocus
+      />
+    </a-modal>
   </div>
 </template>
 
@@ -49,6 +60,7 @@
     display: flex;
     flex-direction: column-reverse;
     flex-grow: 1;
+    margin-bottom: 0;
 
     > .current {
       display: flex;
